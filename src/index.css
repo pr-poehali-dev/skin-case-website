@@ -1,38 +1,40 @@
+@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Roboto:wght@300;400;500;700&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    --background: 26 26 46;
+    --foreground: 255 255 255;
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card: 26 33 62;
+    --card-foreground: 255 255 255;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover: 26 33 62;
+    --popover-foreground: 255 255 255;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 255 107 53;
+    --primary-foreground: 26 26 46;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 78 196 196;
+    --secondary-foreground: 26 26 46;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 26 33 62;
+    --muted-foreground: 156 163 175;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 246 33 62;
+    --accent-foreground: 255 255 255;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 239 68 68;
+    --destructive-foreground: 255 255 255;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 55 65 81;
+    --input: 55 65 81;
+    --ring: 255 107 53;
 
-    --radius: 0.5rem;
+    --radius: 0.75rem;
 
     --sidebar-background: 0 0% 98%;
 
@@ -97,5 +99,44 @@
 
   body {
     @apply bg-background text-foreground;
+    font-family: "Roboto", sans-serif;
+  }
+}
+
+@layer components {
+  .animate-case-hover {
+    @apply transition-all duration-300 hover:scale-105 hover:shadow-2xl;
+  }
+
+  .neon-glow {
+    box-shadow:
+      0 0 20px rgba(255, 107, 53, 0.5),
+      0 0 40px rgba(78, 205, 196, 0.3);
+  }
+
+  .case-shimmer {
+    background: linear-gradient(
+      45deg,
+      transparent 30%,
+      rgba(255, 107, 53, 0.1) 50%,
+      transparent 70%
+    );
+    background-size: 200% 200%;
+    animation: shimmer 2s infinite;
+  }
+}
+
+@layer utilities {
+  .text-glow {
+    text-shadow: 0 0 20px rgba(255, 107, 53, 0.8);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% -200%;
+  }
+  100% {
+    background-position: 200% 200%;
   }
 }
