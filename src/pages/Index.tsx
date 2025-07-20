@@ -4,10 +4,12 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import Icon from '@/components/ui/icon';
+import { useGame } from '@/context/GameContext';
 
 const Index = () => {
   const [selectedCase, setSelectedCase] = useState<number | null>(null);
   const navigate = useNavigate();
+  const { balance } = useGame();
 
   const cases = [
     {
@@ -79,7 +81,7 @@ const Index = () => {
             </Button>
             <Button className="bg-primary hover:bg-primary/90 text-primary-foreground">
               <Icon name="Wallet" size={18} className="mr-2" />
-              999 ₽
+              {balance} ₽
             </Button>
           </nav>
         </div>

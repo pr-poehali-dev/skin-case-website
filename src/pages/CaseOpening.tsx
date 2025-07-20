@@ -4,6 +4,9 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import Icon from '@/components/ui/icon';
+import { useGame } from '@/context/GameContext';
+import { useSound } from '@/hooks/useSound';
+import { toast } from '@/hooks/use-toast';
 
 interface CaseItem {
   id: number;
@@ -17,6 +20,8 @@ interface CaseItem {
 const CaseOpening = () => {
   const { caseId } = useParams();
   const navigate = useNavigate();
+  const { balance, subtractBalance, addBalance, canAfford } = useGame();
+  const { playCaseOpenSound } = useSound();
   const [isOpening, setIsOpening] = useState(false);
   const [openedItem, setOpenedItem] = useState<CaseItem | null>(null);
   const [animationStage, setAnimationStage] = useState<'closed' | 'opening' | 'opened'>('closed');
@@ -60,8 +65,24 @@ const CaseOpening = () => {
   const openCase = async () => {
     if (!selectedCase || isOpening) return;
     
+    // Проверяем достаточность средств
+    if (!canAfford(selectedCase.price)) {
+      toast({
+        title: "Недостаточно средств",
+        description: `Нужно ${selectedCase.price} ₽, а у вас ${balance} ₽`,
+        variant: "destructive"
+      });
+      return;
+    }
+    
+    // Списываем деньги
+    subtractBalance(selectedCase.price);
+    
     setIsOpening(true);
     setAnimationStage('opening');
+    
+    // Воспроизводим звук
+    playCaseOpenSound();
     
     // Симуляция анимации открытия
     setTimeout(() => {
@@ -69,6 +90,11 @@ const CaseOpening = () => {
       setOpenedItem(randomItem);
       setAnimationStage('opened');
       setIsOpening(false);
+      
+      toast({
+        title: "Кейс открыт!",
+        description: `Вы получили: ${randomItem.name}`,
+      });
     }, 3000);
   };
 
@@ -76,6 +102,19 @@ const CaseOpening = () => {
     setAnimationStage('closed');
     setOpenedItem(null);
     setIsOpening(false);
+  };
+
+  const sellItem = () => {
+    if (!openedItem) return;
+    
+    addBalance(openedItem.price);
+    
+    toast({
+      title: "Предмет продан!",
+      description: `Вы получили ${openedItem.price} ₽ за ${openedItem.name}`,
+    });
+    
+    resetCase();
   };
 
   if (!selectedCase) {
@@ -115,7 +154,7 @@ const CaseOpening = () => {
             </Badge>
             <Button className="bg-primary hover:bg-primary/90 text-primary-foreground">
               <Icon name="Wallet" size={18} className="mr-2" />
-              999 ₽
+              {balance} ₽
             </Button>
           </div>
         </div>
@@ -189,11 +228,18 @@ const CaseOpening = () => {
               <Button 
                 size="lg" 
                 onClick={openCase}
-                disabled={isOpening}
-                className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold px-12 py-4 text-xl"
+                disabled={isOpening || !canAfford(selectedCase.price)}
+                className={`font-semibold px-12 py-4 text-xl ${
+                  canAfford(selectedCase.price) 
+                    ? 'bg-primary hover:bg-primary/90 text-primary-foreground' 
+                    : 'bg-gray-500 text-gray-300 cursor-not-allowed'
+                }`}
               >
                 <Icon name="Package" size={24} className="mr-3" />
-                Открыть кейс за {selectedCase.price} ₽
+                {canAfford(selectedCase.price) 
+                  ? `Открыть кейс за ${selectedCase.price} ₽` 
+                  : `Нужно ${selectedCase.price} ₽ (у вас ${balance} ₽)`
+                }
               </Button>
             )}
             
@@ -210,10 +256,11 @@ const CaseOpening = () => {
                 <Button 
                   size="lg" 
                   variant="outline"
+                  onClick={sellItem}
                   className="border-primary text-primary hover:bg-primary/10 font-semibold px-8 py-3"
                 >
                   <Icon name="ShoppingBag" size={20} className="mr-2" />
-                  Продать
+                  Продать за {openedItem.price} ₽
                 </Button>
               </>
             )}
