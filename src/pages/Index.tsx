@@ -18,7 +18,7 @@ const Index = () => {
       price: 299,
       rarity: 'Epic',
       image: '/img/ef092dcf-a393-4def-92b8-b22975cbd7c7.jpg',
-      items: ['AK-47 | Neon', 'M4A4 | Cyber', 'AWP | Electric'],
+      items: ['AK-47 | Neon Strike', 'M4A4 | Cyber Storm', 'Karambit | Blue Steel'],
       rarityColor: 'bg-electric-orange'
     },
     {
@@ -26,8 +26,8 @@ const Index = () => {
       name: 'Neon Case',
       price: 199,
       rarity: 'Rare',
-      image: '/img/283d384c-7a66-4f73-8fa0-68b67fdf1c4a.jpg',
-      items: ['Glock-18 | Neon', 'USP-S | Cyber', 'Knife | Electric'],
+      image: '/img/ef092dcf-a393-4def-92b8-b22975cbd7c7.jpg',
+      items: ['AWP | Electric Storm', 'Knife | Neon Fade', 'AK-47 | Wasteland'],
       rarityColor: 'bg-neon-cyan'
     },
     {
@@ -35,9 +35,27 @@ const Index = () => {
       name: 'Elite Case',
       price: 599,
       rarity: 'Legendary',
-      image: '/img/283d384c-7a66-4f73-8fa0-68b67fdf1c4a.jpg',
-      items: ['Dragon Lore', 'Karambit | Fade', 'AK-47 | Gold'],
+      image: '/img/ef092dcf-a393-4def-92b8-b22975cbd7c7.jpg',
+      items: ['Dragon Lore AWP', 'Karambit | Fade', 'AK-47 | Fire Serpent'],
       rarityColor: 'bg-rare-gold'
+    },
+    {
+      id: 4,
+      name: 'Premium Case',
+      price: 999,
+      rarity: 'Mythical',
+      image: '/img/ef092dcf-a393-4def-92b8-b22975cbd7c7.jpg',
+      items: ['M4A4 | Howl', 'Karambit | Crimson Web', 'Butterfly Knife | Fade'],
+      rarityColor: 'bg-purple-600'
+    },
+    {
+      id: 5,
+      name: 'Lucky Case',
+      price: 149,
+      rarity: 'Common',
+      image: '/img/ef092dcf-a393-4def-92b8-b22975cbd7c7.jpg',
+      items: ['Desert Eagle | Blaze', 'M9 Bayonet | Damascus', 'Various Skins'],
+      rarityColor: 'bg-gray-500'
     }
   ];
 
