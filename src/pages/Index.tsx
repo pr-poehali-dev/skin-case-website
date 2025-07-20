@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -6,6 +7,7 @@ import Icon from '@/components/ui/icon';
 
 const Index = () => {
   const [selectedCase, setSelectedCase] = useState<number | null>(null);
+  const navigate = useNavigate();
 
   const cases = [
     {
@@ -13,7 +15,7 @@ const Index = () => {
       name: 'Cyber Case',
       price: 299,
       rarity: 'Epic',
-      image: '/img/283d384c-7a66-4f73-8fa0-68b67fdf1c4a.jpg',
+      image: '/img/ef092dcf-a393-4def-92b8-b22975cbd7c7.jpg',
       items: ['AK-47 | Neon', 'M4A4 | Cyber', 'AWP | Electric'],
       rarityColor: 'bg-electric-orange'
     },
@@ -125,7 +127,7 @@ const Index = () => {
             <Card 
               key={caseItem.id} 
               className="bg-card border-border hover:border-primary/50 transition-all duration-300 hover:scale-105 cursor-pointer group"
-              onClick={() => setSelectedCase(caseItem.id)}
+              onClick={() => navigate(`/case/${caseItem.id}`)}
             >
               <CardHeader className="relative">
                 <div className="relative overflow-hidden rounded-lg">
@@ -159,7 +161,7 @@ const Index = () => {
                     className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-semibold mt-4"
                     onClick={(e) => {
                       e.stopPropagation();
-                      setSelectedCase(caseItem.id);
+                      navigate(`/case/${caseItem.id}`);
                     }}
                   >
                     <Icon name="Package" size={18} className="mr-2" />
