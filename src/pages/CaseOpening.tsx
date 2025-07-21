@@ -7,6 +7,7 @@ import Icon from '@/components/ui/icon';
 import { useGame } from '@/context/GameContext';
 import { useSound } from '@/hooks/useSound';
 import { toast } from '@/hooks/use-toast';
+import StarField from '@/components/ui/StarField';
 
 interface CaseItem {
   id: number;
@@ -34,14 +35,14 @@ const CaseOpening = () => {
       price: 299,
       image: '/img/ef092dcf-a393-4def-92b8-b22975cbd7c7.jpg',
       items: [
-        { id: 1, name: 'P2000 | Digital', rarity: 'Common', image: '/img/63ac6fd9-a139-4f22-a7fa-f638aeebf8ec.jpg', price: 5, rarityColor: 'bg-gray-500' },
-        { id: 2, name: 'Glock-18 | Blue', rarity: 'Common', image: '/img/250e76c1-c797-4dd5-a515-f01e31fa1937.jpg', price: 12, rarityColor: 'bg-gray-500' },
-        { id: 3, name: 'USP-S | Circuit', rarity: 'Uncommon', image: '/img/94c07533-37e7-4555-9ce0-a1a72dd2b59d.jpg', price: 85, rarityColor: 'bg-green-500' },
-        { id: 4, name: 'AK-47 | Blue Steel', rarity: 'Uncommon', image: '/img/6ecc0f54-ca53-4979-b946-6f65400ffd52.jpg', price: 145, rarityColor: 'bg-green-500' },
-        { id: 5, name: 'M4A4 | Cyber Storm', rarity: 'Rare', image: '/img/63ac6fd9-a139-4f22-a7fa-f638aeebf8ec.jpg', price: 380, rarityColor: 'bg-blue-500' },
-        { id: 6, name: 'AWP | Electric', rarity: 'Rare', image: '/img/250e76c1-c797-4dd5-a515-f01e31fa1937.jpg', price: 520, rarityColor: 'bg-blue-500' },
-        { id: 7, name: 'AK-47 | Neon Strike', rarity: 'Epic', image: '/img/94c07533-37e7-4555-9ce0-a1a72dd2b59d.jpg', price: 1240, rarityColor: 'bg-electric-orange' },
-        { id: 8, name: 'Karambit | Blue Steel', rarity: 'Legendary', image: '/img/6ecc0f54-ca53-4979-b946-6f65400ffd52.jpg', price: 2850, rarityColor: 'bg-rare-gold' }
+        { id: 1, name: 'P2000 | Digital', rarity: 'Common', image: '/img/2d01df01-bc3a-4f5a-b588-cad1c5a11a77.jpg', price: 5, rarityColor: 'bg-gray-500' },
+        { id: 2, name: 'Glock-18 | Water Elemental', rarity: 'Common', image: '/img/2d01df01-bc3a-4f5a-b588-cad1c5a11a77.jpg', price: 12, rarityColor: 'bg-gray-500' },
+        { id: 3, name: 'USP-S | Circuit', rarity: 'Uncommon', image: '/img/2d01df01-bc3a-4f5a-b588-cad1c5a11a77.jpg', price: 85, rarityColor: 'bg-green-500' },
+        { id: 4, name: 'AK-47 | Blue Laminate', rarity: 'Uncommon', image: '/img/ab8e5668-dec9-4db9-bb06-7f0febeb0edf.jpg', price: 145, rarityColor: 'bg-green-500' },
+        { id: 5, name: 'M4A4 | Asiimov', rarity: 'Rare', image: '/img/96c5788a-84b0-4c72-8c1d-3c32e2f64c20.jpg', price: 380, rarityColor: 'bg-blue-500' },
+        { id: 6, name: 'AWP | Electric Hive', rarity: 'Rare', image: '/img/96c5788a-84b0-4c72-8c1d-3c32e2f64c20.jpg', price: 520, rarityColor: 'bg-blue-500' },
+        { id: 7, name: 'AK-47 | Redline', rarity: 'Epic', image: '/img/ab8e5668-dec9-4db9-bb06-7f0febeb0edf.jpg', price: 1240, rarityColor: 'bg-electric-orange' },
+        { id: 8, name: 'Karambit | Fade', rarity: 'Legendary', image: '/img/1717bfc8-5a44-48e6-8e4d-e4729d2ef2f2.jpg', price: 2850, rarityColor: 'bg-rare-gold' }
       ]
     },
     '2': {
@@ -68,7 +69,7 @@ const CaseOpening = () => {
         { id: 18, name: 'SSG 08 | Blood in Water', rarity: 'Rare', image: '/img/63ac6fd9-a139-4f22-a7fa-f638aeebf8ec.jpg', price: 445, rarityColor: 'bg-blue-500' },
         { id: 19, name: 'AWP | Asiimov', rarity: 'Epic', image: '/img/250e76c1-c797-4dd5-a515-f01e31fa1937.jpg', price: 1850, rarityColor: 'bg-electric-orange' },
         { id: 20, name: 'AK-47 | Fire Serpent', rarity: 'Legendary', image: '/img/94c07533-37e7-4555-9ce0-a1a72dd2b59d.jpg', price: 3200, rarityColor: 'bg-rare-gold' },
-        { id: 21, name: 'Dragon Lore AWP', rarity: 'Mythical', image: '/img/6ecc0f54-ca53-4979-b946-6f65400ffd52.jpg', price: 8500, rarityColor: 'bg-purple-600' },
+        { id: 21, name: 'AWP | Dragon Lore', rarity: 'Mythical', image: '/img/3b96dcbb-d143-475f-bb6f-da4b0107aa18.jpg', price: 8500, rarityColor: 'bg-purple-600' },
         { id: 22, name: 'Karambit | Fade', rarity: 'Mythical', image: '/img/63ac6fd9-a139-4f22-a7fa-f638aeebf8ec.jpg', price: 12500, rarityColor: 'bg-purple-600' }
       ]
     },
@@ -217,9 +218,11 @@ const CaseOpening = () => {
   }
 
   return (
-    <div className="min-h-screen bg-background text-foreground font-roboto">
-      {/* Header */}
-      <header className="border-b border-border bg-card/50 backdrop-blur-sm sticky top-0 z-50">
+    <div className="min-h-screen relative">
+      <StarField />
+      <div className="cosmic-card min-h-screen text-foreground font-roboto">
+        {/* Header */}
+        <header className="border-b border-border cosmic-card backdrop-blur-sm sticky top-0 z-50">
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
           <Button 
             variant="ghost" 
@@ -265,7 +268,7 @@ const CaseOpening = () => {
             {animationStage === 'opening' && (
               <div className="relative">
                 {/* Scroll Container */}
-                <div className="w-full max-w-4xl mx-auto bg-card/20 rounded-xl p-4 border-2 border-primary/30">
+                <div className="w-full max-w-4xl mx-auto cosmic-card rounded-xl p-4 border-2 border-primary/30">
                   <div className="relative h-32 overflow-hidden">
                     {/* Center Line Indicator */}
                     <div className="absolute top-0 bottom-0 left-1/2 w-1 bg-primary z-20 transform -translate-x-1/2"></div>
@@ -281,7 +284,7 @@ const CaseOpening = () => {
                     >
                       {scrollItems.map((item, index) => (
                         <div key={`${item.id}-${index}`} className="flex-shrink-0 w-28 h-28 mx-1">
-                          <div className={`w-full h-full rounded-lg border-2 ${item.rarityColor} border-opacity-50 bg-card p-2 flex flex-col items-center justify-center`}>
+                          <div className={`w-full h-full rounded-lg border-2 ${item.rarityColor} border-opacity-50 cosmic-card p-2 flex flex-col items-center justify-center`}>
                             <img 
                               src={item.image} 
                               alt={item.name} 
@@ -384,7 +387,7 @@ const CaseOpening = () => {
               </h3>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
                 {selectedCase.items.map((item) => (
-                  <Card key={item.id} className="bg-card border-border hover:border-primary/50 transition-all duration-300 hover:scale-105">
+                  <Card key={item.id} className="cosmic-card border-border hover:border-primary/50 transition-all duration-300 hover:scale-105 case-glow">
                     <CardContent className="p-4 text-center">
                       <img 
                         src={item.image} 
@@ -402,6 +405,7 @@ const CaseOpening = () => {
               </div>
             </div>
           )}
+        </div>
         </div>
       </div>
     </div>

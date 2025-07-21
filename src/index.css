@@ -100,6 +100,22 @@
   body {
     @apply bg-background text-foreground;
     font-family: "Roboto", sans-serif;
+    background: url('/img/e2e7a423-9753-4807-8a93-39082e4c7248.jpg') center center / cover no-repeat fixed;
+    position: relative;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.2) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(120, 219, 255, 0.1) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: -1;
   }
 }
 
@@ -144,4 +160,50 @@
 /* Анимация прокрутки для кейсов */
 .duration-4000 {
   transition-duration: 4000ms;
+}
+
+/* Анимированные звезды */
+.stars {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.star {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: white;
+  border-radius: 50%;
+  opacity: 0;
+  animation: twinkle 3s infinite;
+}
+
+.star:nth-child(odd) {
+  animation-delay: 1s;
+}
+
+.star:nth-child(3n) {
+  animation-delay: 2s;
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0; }
+  50% { opacity: 1; }
+}
+
+/* Улучшенные эффекты */
+.case-glow {
+  box-shadow: 0 0 30px rgba(255, 107, 53, 0.3),
+              inset 0 0 20px rgba(255, 255, 255, 0.1);
+}
+
+.cosmic-card {
+  background: rgba(26, 33, 62, 0.8);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }

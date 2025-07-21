@@ -5,6 +5,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Badge } from '@/components/ui/badge';
 import Icon from '@/components/ui/icon';
 import { useGame } from '@/context/GameContext';
+import StarField from '@/components/ui/StarField';
 
 const Index = () => {
   const [selectedCase, setSelectedCase] = useState<number | null>(null);
@@ -18,7 +19,7 @@ const Index = () => {
       price: 299,
       rarity: 'Epic',
       image: '/img/ef092dcf-a393-4def-92b8-b22975cbd7c7.jpg',
-      items: ['AK-47 | Neon Strike', 'M4A4 | Cyber Storm', 'Karambit | Blue Steel'],
+      items: ['AK-47 | Redline', 'M4A4 | Asiimov', 'Karambit | Fade'],
       rarityColor: 'bg-electric-orange'
     },
     {
@@ -36,7 +37,7 @@ const Index = () => {
       price: 599,
       rarity: 'Legendary',
       image: '/img/ef092dcf-a393-4def-92b8-b22975cbd7c7.jpg',
-      items: ['Dragon Lore AWP', 'Karambit | Fade', 'AK-47 | Fire Serpent'],
+      items: ['AWP | Dragon Lore', 'Karambit | Fade', 'AK-47 | Fire Serpent'],
       rarityColor: 'bg-rare-gold'
     },
     {
@@ -56,6 +57,33 @@ const Index = () => {
       image: '/img/ef092dcf-a393-4def-92b8-b22975cbd7c7.jpg',
       items: ['Desert Eagle | Blaze', 'M9 Bayonet | Damascus', 'Various Skins'],
       rarityColor: 'bg-gray-500'
+    },
+    {
+      id: 6,
+      name: 'Spectrum Case',
+      price: 450,
+      rarity: 'Epic',
+      image: '/img/ef092dcf-a393-4def-92b8-b22975cbd7c7.jpg',
+      items: ['M4A1-S | Bright Water', 'AK-47 | Phantom Disruptor', 'Butterfly Knife | Autotronic'],
+      rarityColor: 'bg-electric-orange'
+    },
+    {
+      id: 7,
+      name: 'Operation Case',
+      price: 750,
+      rarity: 'Legendary',
+      image: '/img/ef092dcf-a393-4def-92b8-b22975cbd7c7.jpg',
+      items: ['AWP | Gungnir', 'AK-47 | Wild Lotus', 'Specialist Gloves | Crimson Kimono'],
+      rarityColor: 'bg-rare-gold'
+    },
+    {
+      id: 8,
+      name: 'Revolution Case',
+      price: 1200,
+      rarity: 'Mythical',
+      image: '/img/ef092dcf-a393-4def-92b8-b22975cbd7c7.jpg',
+      items: ['AK-47 | Inheritance', 'M4A4 | Temukau', 'Karambit | Revolution'],
+      rarityColor: 'bg-purple-600'
     }
   ];
 
@@ -68,15 +96,19 @@ const Index = () => {
   ];
 
   const recentDrops = [
-    { player: 'CyberNinja', item: 'AK-47 | Neon Strike', rarity: 'Epic', image: '/img/94c07533-37e7-4555-9ce0-a1a72dd2b59d.jpg' },
-    { player: 'NeonHunter', item: 'Karambit | Electric', rarity: 'Legendary', image: '/img/250e76c1-c797-4dd5-a515-f01e31fa1937.jpg' },
-    { player: 'EliteGamer', item: 'M4A4 | Cyber Storm', rarity: 'Rare', image: '/img/94c07533-37e7-4555-9ce0-a1a72dd2b59d.jpg' }
+    { player: 'CyberNinja', item: 'AK-47 | Redline', rarity: 'Epic', image: '/img/ab8e5668-dec9-4db9-bb06-7f0febeb0edf.jpg' },
+    { player: 'NeonHunter', item: 'Karambit | Fade', rarity: 'Legendary', image: '/img/1717bfc8-5a44-48e6-8e4d-e4729d2ef2f2.jpg' },
+    { player: 'EliteGamer', item: 'AWP | Dragon Lore', rarity: 'Mythical', image: '/img/3b96dcbb-d143-475f-bb6f-da4b0107aa18.jpg' },
+    { player: 'SkinCollector', item: 'M4A4 | Asiimov', rarity: 'Rare', image: '/img/96c5788a-84b0-4c72-8c1d-3c32e2f64c20.jpg' },
+    { player: 'CaseOpener', item: 'Glock-18 | Water Elemental', rarity: 'Common', image: '/img/2d01df01-bc3a-4f5a-b588-cad1c5a11a77.jpg' }
   ];
 
   return (
-    <div className="min-h-screen bg-background text-foreground font-roboto">
-      {/* Header */}
-      <header className="border-b border-border bg-card/50 backdrop-blur-sm sticky top-0 z-50">
+    <div className="min-h-screen relative">
+      <StarField />
+      <div className="cosmic-card min-h-screen text-foreground font-roboto">
+        {/* Header */}
+        <header className="border-b border-border cosmic-card backdrop-blur-sm sticky top-0 z-50">
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
           <div className="flex items-center space-x-3">
             <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
@@ -146,7 +178,7 @@ const Index = () => {
           {cases.map((caseItem) => (
             <Card 
               key={caseItem.id} 
-              className="bg-card border-border hover:border-primary/50 transition-all duration-300 hover:scale-105 cursor-pointer group"
+              className="cosmic-card border-border hover:border-primary/50 transition-all duration-300 hover:scale-105 cursor-pointer group case-glow"
               onClick={() => navigate(`/case/${caseItem.id}`)}
             >
               <CardHeader className="relative">
@@ -194,8 +226,8 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Stats Section */}
-      <section className="bg-card/30 py-16">
+        {/* Stats Section */}
+        <section className="cosmic-card py-16">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             {/* Leaderboard */}
@@ -204,7 +236,7 @@ const Index = () => {
                 <Icon name="Trophy" size={32} className="mr-3 text-accent" />
                 ТОП ИГРОКОВ
               </h3>
-              <Card className="bg-card border-border">
+              <Card className="cosmic-card border-border case-glow">
                 <CardContent className="p-6">
                   <div className="space-y-4">
                     {leaderboard.map((player, index) => (
@@ -235,7 +267,7 @@ const Index = () => {
                 <Icon name="Star" size={32} className="mr-3 text-accent" />
                 ПОСЛЕДНИЕ ДРОПЫ
               </h3>
-              <Card className="bg-card border-border">
+              <Card className="cosmic-card border-border case-glow">
                 <CardContent className="p-6">
                   <div className="space-y-4">
                     {recentDrops.map((drop, index) => (
@@ -262,8 +294,8 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="border-t border-border bg-card/50 py-8">
+        {/* Footer */}
+        <footer className="border-t border-border cosmic-card py-8">
         <div className="container mx-auto px-4 text-center">
           <div className="flex justify-center items-center space-x-6 mb-4">
             <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-primary">
@@ -283,7 +315,8 @@ const Index = () => {
             © 2025 Case Hunter. Все права защищены.
           </p>
         </div>
-      </footer>
+        </footer>
+      </div>
     </div>
   );
 };
